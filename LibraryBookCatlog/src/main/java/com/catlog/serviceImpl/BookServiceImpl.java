@@ -32,4 +32,21 @@ public class BookServiceImpl implements BookService
     Book bookbyid = repository.findById(id).orElseThrow(()-> new NullPointerException("Book not found"+id));
     return bookbyid;
     }
+
+    @Override
+    public String deleteBook(int id) {
+        repository.deleteById(id);
+        return "Book deleted";
+    }
+
+    @Override
+    public Book updateBook(int id, Book newBook) {
+        Book book = repository.findById(id).orElseThrow(()->new NullPointerException("Data not found"+id));
+
+        book.setIsbn(newBook.getIsbn());
+        book.setAvailableCopies(newBook.getAvailableCopies());
+
+        Book updatedBook = repository.save(book);
+        return updatedBook;
+    }
 }
