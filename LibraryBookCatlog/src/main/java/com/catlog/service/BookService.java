@@ -9,7 +9,7 @@ public interface BookService
     //save book
     String saveBook(Book book);
 
-
+    //get all data
     List<Book> getAllBook();
 
     Book getBookbyid(int id);
