@@ -18,7 +18,7 @@ public class BookController
     @Autowired
     private BookService bookService;
 
-    //add data
+    //add data api
     @PostMapping("/addBook")
     public ResponseEntity<String> addBookData(@RequestBody Book book){
         System.err.println(book);
