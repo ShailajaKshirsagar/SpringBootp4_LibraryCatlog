@@ -33,7 +33,7 @@ public class BookController
         return new ResponseEntity<>(bookList, HttpStatus.OK);
     }
 
-    //get Data byt id
+    //get Data byt id api
     @GetMapping("/getBookById/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") int id){
         Book book = bookService.getBookbyid(id);
