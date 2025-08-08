@@ -18,5 +18,6 @@ public interface BookService
     //deleteBook
     String deleteBook(int id);
 
+    //update Book
     Book updateBook(int id, Book newBook);
 }
