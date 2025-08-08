@@ -43,6 +43,7 @@ public class BookServiceImpl implements BookService
         return "Book deleted";
     }
 
+    //update implemented
     @Override
     public Book updateBook(int id, Book newBook) {
         Book book = repository.findById(id).orElseThrow(()->new NullPointerException("Data not found"+id));
