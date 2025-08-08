@@ -15,6 +15,7 @@ public interface BookService
     //getby id method added
     Book getBookbyid(int id);
 
+    //deleteBook
     String deleteBook(int id);
 
     Book updateBook(int id, Book newBook);
