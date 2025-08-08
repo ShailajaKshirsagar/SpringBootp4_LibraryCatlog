@@ -47,7 +47,7 @@ public class BookController
         return new ResponseEntity<>("Book deleted",HttpStatus.OK);
     }
 
-    //update
+    //update api
     @PutMapping("/updateData/{id}")
     public ResponseEntity<Book> updateData(@PathVariable("id")int id, @RequestBody Book book){
        Book updateBook = bookService.updateBook(id,book);
