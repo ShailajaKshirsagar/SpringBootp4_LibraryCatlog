@@ -26,7 +26,7 @@ public class BookController
         return  new ResponseEntity<>("Book added", HttpStatus.CREATED);
     }
 
-    //get all data
+    //get all data api
     @GetMapping("/getAllBookData")
     public ResponseEntity<List<Book>> getAllData(){
         List<Book> bookList = bookService.getAllBook();
