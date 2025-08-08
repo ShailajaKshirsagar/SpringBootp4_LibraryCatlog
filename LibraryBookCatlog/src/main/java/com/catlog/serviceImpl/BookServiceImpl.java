@@ -29,6 +29,7 @@ public class BookServiceImpl implements BookService
         return bookList;
     }
 
+    //getByid implemented
     @Override
     public Book getBookbyid(int id) {
     Book bookbyid = repository.findById(id).orElseThrow(()-> new NullPointerException("Book not found"+id));
