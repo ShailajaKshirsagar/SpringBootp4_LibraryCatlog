@@ -12,6 +12,7 @@ public interface BookService
     //get all data
     List<Book> getAllBook();
 
+    //getby id method added
     Book getBookbyid(int id);
 
     String deleteBook(int id);
