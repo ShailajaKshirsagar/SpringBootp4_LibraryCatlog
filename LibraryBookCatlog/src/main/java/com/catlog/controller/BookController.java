@@ -53,5 +53,4 @@ public class BookController
        Book updateBook = bookService.updateBook(id,book);
        return new ResponseEntity<>(updateBook,HttpStatus.OK);
     }
-
 }
