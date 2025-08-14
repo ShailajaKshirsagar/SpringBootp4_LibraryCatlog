@@ -1,11 +1,15 @@
 package com.catlog.serviceImpl;
 
 import com.catlog.entity.Book;
+import com.catlog.helper.ExcelDataReadHelper;
 import com.catlog.repository.BookRepository;
 import com.catlog.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -53,5 +57,20 @@ public class BookServiceImpl implements BookService
 
         Book updatedBook = repository.save(book);
         return updatedBook;
+    }
+
+    @Override
+    public String saveExcelData(MultipartFile file) {
+
+        try {
+            List<Book> bookList = ExcelDataReadHelper.convertExcelDataToListBook(file.getInputStream());
+
+            repository.saveAll(bookList);
+
+            return "Excel Data uploaded successfully";
+        }
+        catch (IOException e){
+            throw new RuntimeException("Failed to upload file"+e.getMessage());
+        }
     }
 }
