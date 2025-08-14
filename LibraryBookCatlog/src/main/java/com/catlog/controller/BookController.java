@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -52,5 +53,17 @@ public class BookController
     public ResponseEntity<Book> updateData(@PathVariable("id")int id, @RequestBody Book book){
        Book updateBook = bookService.updateBook(id,book);
        return new ResponseEntity<>(updateBook,HttpStatus.OK);
+    }
+
+    //Upload excel file
+    @PostMapping(value = "/uploadExcel", consumes = "multipart/form-data")
+    public ResponseEntity<String > uploadExcelFile(@RequestParam("file")MultipartFile file){
+        if(file.isEmpty()){
+            return ResponseEntity.badRequest().body("Please upload excel file");
+        }
+        else {
+            String msg = bookService.saveExcelData(file);
+            return new ResponseEntity<>(msg, HttpStatus.OK);
+        }
     }
 }
