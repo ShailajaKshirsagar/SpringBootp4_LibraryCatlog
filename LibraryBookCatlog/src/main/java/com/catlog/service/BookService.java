@@ -1,6 +1,7 @@
 package com.catlog.service;
 
 import com.catlog.entity.Book;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface BookService
 
     //update Book
     Book updateBook(int id, Book newBook);
+
+    //save excel data in database
+    String saveExcelData(MultipartFile file);
 }
