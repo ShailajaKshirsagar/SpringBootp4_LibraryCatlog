@@ -2,14 +2,19 @@ package com.catlog.serviceImpl;
 
 import com.catlog.entity.Book;
 import com.catlog.helper.ExcelDataReadHelper;
+import com.catlog.helper.GenerateExcelFromDB;
 import com.catlog.repository.BookRepository;
 import com.catlog.service.BookService;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.poifs.crypt.EncryptionInfo;
+import org.apache.poi.poifs.crypt.EncryptionMode;
+import org.apache.poi.poifs.crypt.Encryptor;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 @Service
@@ -72,5 +77,31 @@ public class BookServiceImpl implements BookService
         catch (IOException e){
             throw new RuntimeException("Failed to upload file"+e.getMessage());
         }
+    }
+
+    @Override
+    public ByteArrayInputStream exportDataInExcel(String password) throws IOException {
+        List<Book> books = repository.findAll();
+
+        //create excel file
+        ByteArrayInputStream normalExcel = GenerateExcelFromDB.bookToExcel(books);
+
+        //Encrypt with password
+        POIFSFileSystem fs = new POIFSFileSystem();
+        EncryptionInfo info = new EncryptionInfo(EncryptionMode.agile);
+        Encryptor encryptor = info.getEncryptor();
+        encryptor.confirmPassword("Book123"); //set password here
+
+        try (OPCPackage opc = OPCPackage.open(normalExcel);
+             OutputStream os = encryptor.getDataStream(fs)) {
+            opc.save(os);
+        } catch (Exception e) {
+            throw new IOException("Error encrypting Excel file", e);
+        }
+
+        // Step 3: Return encrypted file as ByteArrayInputStream
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        fs.writeFilesystem(bos);
+        return new ByteArrayInputStream(bos.toByteArray());
     }
 }
