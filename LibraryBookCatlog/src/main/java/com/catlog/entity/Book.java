@@ -9,6 +9,7 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+//entity class
 @Entity
 @Setter
 @Getter
