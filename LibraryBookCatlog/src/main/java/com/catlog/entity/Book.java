@@ -30,7 +30,7 @@ public class Book {
     @JoinColumn(name = "detail_id", referencedColumnName = "id")
     private BookDetailsMapping detail;
 
-    //one book many reviews
+    //one book many reviews one to many
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookReviewMapping> reviews = new ArrayList<>();
 }
