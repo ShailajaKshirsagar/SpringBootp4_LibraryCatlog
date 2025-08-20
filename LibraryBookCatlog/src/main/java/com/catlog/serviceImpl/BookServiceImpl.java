@@ -1,6 +1,7 @@
 package com.catlog.serviceImpl;
 
 import com.catlog.entity.Book;
+import com.catlog.entity.BookReviewMapping;
 import com.catlog.helper.ExcelDataReadHelper;
 import com.catlog.helper.GenerateExcelFromDB;
 import com.catlog.repository.BookRepository;
@@ -27,6 +28,10 @@ public class BookServiceImpl implements BookService
     //save book implemented
     @Override
     public String saveBook(Book book) {
+
+        for(BookReviewMapping review : book.getReviews()){
+            review.setBook(book);
+        }
         repository.save(book);
         return "Book added";
     }
