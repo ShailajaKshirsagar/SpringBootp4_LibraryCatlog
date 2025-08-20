@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+//This class is for one to many mapping
 @Entity
 @Setter
 @Getter
