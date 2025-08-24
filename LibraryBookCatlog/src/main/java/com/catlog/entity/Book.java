@@ -33,4 +33,14 @@ public class Book {
     //one book many reviews one to many
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookReviewMapping> reviews = new ArrayList<>();
+
+    //One to many -> one author can write multiple books and many books can have one author
+    @ManyToMany
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<AuthorsDetails> authorsDetailsList = new ArrayList<>();
+
 }
