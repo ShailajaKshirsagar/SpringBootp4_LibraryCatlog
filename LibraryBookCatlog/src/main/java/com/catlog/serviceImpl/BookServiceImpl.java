@@ -1,6 +1,7 @@
 package com.catlog.serviceImpl;
 
 import com.catlog.entity.Book;
+import com.catlog.entity.BookCategoryMapping;
 import com.catlog.entity.BookReviewMapping;
 import com.catlog.helper.ExcelDataReadHelper;
 import com.catlog.helper.GenerateExcelFromDB;
@@ -32,9 +33,17 @@ public class BookServiceImpl implements BookService
         for(BookReviewMapping review : book.getReviews()){
             review.setBook(book);
         }
+        // Optional: set Book for each Category's book list if bidirectional
+        if (book.getCategories() != null) {
+            for (BookCategoryMapping category : book.getCategories()) {
+                category.getBooks().add(book); // Ensure bidirectional consistency
+            }
+        }
+
         repository.save(book);
         return "Book added";
     }
+
 
     //getAll book implemented
     @Override
