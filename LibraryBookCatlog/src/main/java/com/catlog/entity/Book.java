@@ -7,7 +7,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //entity class
 @Entity
@@ -34,13 +36,12 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookReviewMapping> reviews = new ArrayList<>();
 
-    //One to many -> one author can write multiple books and many books can have one author
-    @ManyToMany
+    //many to many mapping implemented
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "book_author",
+            name = "book_category",
             joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<AuthorsDetails> authorsDetailsList = new ArrayList<>();
-
+    private Set<BookCategoryMapping> categories = new HashSet<>();
 }
