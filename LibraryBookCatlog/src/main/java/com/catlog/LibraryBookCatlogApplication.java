@@ -3,6 +3,7 @@ package com.catlog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//main classs
 @SpringBootApplication
 public class LibraryBookCatlogApplication {
 
