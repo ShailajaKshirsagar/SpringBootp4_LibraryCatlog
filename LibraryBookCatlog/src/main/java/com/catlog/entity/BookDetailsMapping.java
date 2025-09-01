@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-//This is for one to one mapping
+//This is for one to one mapping with books
 @Setter
 @Getter
 @ToString
