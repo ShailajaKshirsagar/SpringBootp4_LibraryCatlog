@@ -36,7 +36,7 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookReviewMapping> reviews = new ArrayList<>();
 
-    //many to many mapping
+    //many to many mapping implemente
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "book_category",
