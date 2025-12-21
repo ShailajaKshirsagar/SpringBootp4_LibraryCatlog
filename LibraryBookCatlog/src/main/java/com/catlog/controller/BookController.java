@@ -1,7 +1,9 @@
 package com.catlog.controller;
 
+import com.catlog.dto.DashboardSummaryDTO;
 import com.catlog.entity.Book;
 import com.catlog.service.BookService;
+import com.catlog.serviceImpl.DashboardService;
 import org.aspectj.weaver.ast.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -23,6 +25,8 @@ public class BookController {
     //inject service in this
     @Autowired
     private BookService bookService;
+    @Autowired
+    private DashboardService dashboardService;
 
     //add data api
     @PostMapping("/addBook")
@@ -95,6 +99,12 @@ public class BookController {
                 .headers(headers)
                 .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
                 .body(new InputStreamResource(in));
+    }
+
+    //summary api
+    @GetMapping("/dashboard-summary")
+    public DashboardSummaryDTO getDashboardSummary() {
+        return dashboardService.getDashboardSummary();
     }
 
 }

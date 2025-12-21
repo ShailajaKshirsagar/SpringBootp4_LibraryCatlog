@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LibraryBookCatlog.iml" filepath="$PROJECT_DIR$/.idea/LibraryBookCatlog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryBookCatlog/LibraryBookCatlog.iml" filepath="$PROJECT_DIR$/LibraryBookCatlog/LibraryBookCatlog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SpringBootp4_LibraryCatlog.iml" filepath="$PROJECT_DIR$/.idea/SpringBootp4_LibraryCatlog.iml" />
     </modules>
   </component>
 </project>
