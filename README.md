@@ -46,3 +46,8 @@ The application exposes **RESTful APIs documented using Swagger (OpenAPI)** for 
 - **API Testing :** Swagger UI
 - **Additional Testing:** PostMan
 
+## API's : 
+<img width="1649" height="780" alt="{88D330FA-550F-4BBD-95DF-CC12520005BE}" src="https://github.com/user-attachments/assets/f7ea1687-bbaf-412c-b3f3-fa26a2d59893" />
+
+
+
